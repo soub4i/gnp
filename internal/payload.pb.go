@@ -148,3 +148,12 @@ func file_payload_proto_init() {
 	file_payload_proto_goTypes = nil
 	file_payload_proto_depIdxs = nil
 }
+
+// Clone
+
+func (x *Payload) Clone() *Payload {
+	clone := new(Payload)
+	clone.Data = x.Data
+	clone.Version = x.Version
+	return clone
+}

@@ -14,6 +14,7 @@ type Client struct {
 func CreateClient(option Options) (error, Client) {
 
 	var client Client
+
 	var ip net.IP
 	var err error
 
@@ -21,8 +22,6 @@ func CreateClient(option Options) (error, Client) {
 		fmt.Println("Error: ", err)
 		ip = net.IPv4(0, 0, 0, 0)
 	}
-
-	Ping(ip, option.Port)
 
 	conn, err := net.DialUDP("udp", nil, &net.UDPAddr{
 		IP:   ip,
@@ -43,9 +42,11 @@ func CreateClient(option Options) (error, Client) {
 	return nil, client
 }
 
-func (c Client) Send(payload Payload) error {
+func (c Client) Send(payload *Payload) error {
 
-	data, err := proto.Marshal(&payload)
+	p := payload.Clone()
+
+	data, err := proto.Marshal(p)
 
 	if err != nil {
 		fmt.Println("Error: ", err)

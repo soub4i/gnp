@@ -46,7 +46,7 @@ func main() {
 		ServerAddr: *serverAddr,
 	}
 
-	payload := internal.Payload{
+	payload := &internal.Payload{
 		Data:    *data,
 		Version: Version,
 	}
