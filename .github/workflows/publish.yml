@@ -33,12 +33,9 @@ jobs:
         run: |
           make compile
 
-      - name: Archive build files
-        run: cd bin && tar -czvf gnp.tar.gz *
-
       - name: Copy build-artifacts
         uses: skx/github-action-publish-binaries@master
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
         with:
-          args: "./bin/*.tar.gz"
+          args: "./bin/*"
