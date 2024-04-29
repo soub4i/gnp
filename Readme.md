@@ -4,8 +4,6 @@ This is a simple protocol to send messages between different devices. it is desi
 
 ## Usage
 
-To use the protocol you need to implement the `gnp.Message` interface and then you can use the `gnp.Server` and `gnp.Client` to send and receive messages.
-
 ```sh
 gnp help
 
@@ -19,6 +17,18 @@ gnp help
                 - -p: port to listen on
                 - -ip: server address
                 - -d: data to send
+```
+
+### Server
+
+```sh
+gnp-linux-amd64 server -p=8080
+```
+
+### Client
+
+```sh
+gnp-linux-amd64 client -p=8080 -d="Yo my name is mo"
 ```
 
 ## compile
