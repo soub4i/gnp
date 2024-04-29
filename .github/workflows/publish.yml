@@ -1,0 +1,44 @@
+# workflow name
+name: release
+
+# on events
+on:
+  release:
+    types:
+      - created
+
+# jobs
+jobs:
+  Publish:
+    name: Generate cross-platform builds
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v2
+
+      - name: Set up Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.16
+      - name: Install gox
+        run: go get -u github.com/mitchellh/gox
+
+      - name: Install dependencies
+        run: go mod download
+
+      - name: Lint and format code
+        run: go fmt ./... && go vet ./...
+
+      - name: compile binaries
+        run: |
+          make compile
+
+      - name: Archive build files
+        run: cd bin && tar -czvf gnp.tar.gz *
+
+      - name: Copy build-artifacts
+        uses: skx/github-action-publish-binaries@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+        with:
+          args: "./bin/*.tar.gz"
