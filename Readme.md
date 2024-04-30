@@ -1,6 +1,6 @@
 # GNP Golovo Network Protocol
 
-This is a simple protocol to send messages between different devices. it is designed to be simple and easy to implement. built on top of UDP and named Glovo because it does not guaranty delivery of the messages Like Glovo with your orders.
+This is a simple network protocol to send messages between different devices. built on top of UDP and named `Glovo` because it does not guaranty delivery of the messages like Glovo with your orders.
 
 it's uses Google's protobuf to serialize and deserialize the messages. because why not.
 

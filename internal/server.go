@@ -42,8 +42,9 @@ func CreateServer(option Options) (error, Server) {
 func (s Server) Run() {
 
 	var payload Payload
+	buf := make([]byte, 1024)
+
 	for {
-		buf := make([]byte, 1024)
 		n, addr, err := s.Conn.ReadFromUDP(buf)
 
 		if err != nil {
@@ -51,14 +52,17 @@ func (s Server) Run() {
 			continue
 		}
 
-		err = proto.Unmarshal(buf[:n], &payload)
+		go func() {
 
-		if err != nil {
-			fmt.Println("Error => ", err)
-			continue
-		}
+			err = proto.Unmarshal(buf[:n], &payload)
 
-		fmt.Printf("Received data: %s from %s\n", payload.Data, addr)
+			if err != nil {
+				fmt.Println("Error => ", err)
+			}
+
+			fmt.Printf("Received data: %s from %s\n", payload.Data, addr)
+		}()
+
 	}
 
 }
