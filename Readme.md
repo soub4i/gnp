@@ -2,6 +2,8 @@
 
 This is a simple protocol to send messages between different devices. it is designed to be simple and easy to implement. built on top of UDP and named Glovo because it does not guaranty delivery of the messages Like Glovo with your .
 
+it's uses Google's protobuf to serialize and deserialize the messages. because why not.
+
 ## Usage
 
 ```sh
