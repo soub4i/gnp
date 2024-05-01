@@ -1,6 +1,6 @@
 # GNP Golovo Network Protocol
 
-This is a simple network protocol to send messages between different devices. built on top of UDP and named `Glovo` because it does not guaranty delivery of the messages like Glovo with your orders.
+This is a simple network protocol to send messages between different devices. built on top of UDP and named `Glovoo` because it does not guaranty delivery of the messages like Glovoo with your orders.
 
 it's uses Google's protobuf to serialize and deserialize the messages. because why not.
 
@@ -9,7 +9,7 @@ it's uses Google's protobuf to serialize and deserialize the messages. because w
 ```sh
 gnp help
 
-        gnp - glovo network protocol
+        gnp - Glovoo network protocol
         Usage: gnp [options] <command> .
         commands:
                 - server: start the server
@@ -38,11 +38,3 @@ gnp-linux-amd64 client -p=8080 -d="Yo my name is mo"
 ```sh
 make compile
 ```
-
-## Structure
-
-The `cmd` directory will contain the different binaries, separated in directories.
-
-The `bin` directory will contain the generated binaries.
-
-The `internal` directory will contain all your reusable packages.
